@@ -31,6 +31,6 @@ def gen_articles(request):
             
             new_article.save()
     except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
+        return JsonResponse({'error': str(e),"trace":e.with_traceback()}, status=500)
     serialized_articles = serializers.serialize('json', Article.objects.all())
     return JsonResponse(serialized_articles, safe=False)

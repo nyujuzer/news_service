@@ -12,9 +12,9 @@ class ArticleListAPIView(APIView):
         articles = Article.objects.all()
         serializer = ArticleSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
-@usesAPIKey
-def test_api_key(request):
-    return JsonResponse({"success":True})
+# @usesAPIKey
+# def test_api_key(request):
+#     return JsonResponse({"success":True})
 @usesAPIKey
 def gen_articles(request):
     # Check if the API key is valid (this is a placeholder, implement your own logic)

@@ -16,14 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from .views import ArticleListAPIView, gen_articles, test_api_key
+from .views import ArticleListAPIView, gen_articles
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', ArticleListAPIView.as_view(), name='satirical_articles'),
     # path('test', test_api_key, name='test_api_key'),
-    path('test', test_api_key, name='test_api_key_with_param'),
     path('gen', gen_articles, name='gen_artickes'),
-    re_path(r'^test\?api_key=(?P<api_key>.+)$', test_api_key, name='test_api_key_with_param'),
-    re_path(r'^gen\?api_key=(?P<api_key>.+)$', test_api_key, name='test_api_key_with_param'),
+    re_path(r'^gen\?api_key=(?P<api_key>.+)$', gen_articles, name='test_api_key_with_param'),
 ]

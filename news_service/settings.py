@@ -57,6 +57,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'news_service.urls'
 CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALL_ORIGINS = []
+CRSF_TRUSTED_ORIGINS = ["*"]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -65,7 +65,7 @@ def get_new_articles(extracted_titles_desc):
         prompt = f"Imagine you are a world-class satirist. You are handed the following article: {i['title']} - {i['description']}.\n\nNow, use your comedic genius to write a long, satirical article poking fun at this. Make it funny, absurd, and revealing about the insanity that exists in the world today. Tag your article appropriately, like 'Politics,' 'Economy,' 'Weird News,' etc. Be sure to add the title and a body of text to your satirical article."
         # Generate satirical article based on the original news article
         response = client.models.generate_content(
-            model='gemini-2.0-flash',
+            model='gemini-1.5-flash',
             contents=prompt,
             config={
                 'response_mime_type': 'application/json',

@@ -57,13 +57,11 @@ def get_news():
     
     # Pass the extracted titles and descriptions to the AI for satire generation
     articleList = get_new_articles(extracted_titles_desc)
-    print(articleList)  # For testing purposes, you can replace this with saving to a database or displaying it in the frontend.
     return articleList
 def get_new_articles(extracted_titles_desc):
     return_list = []
     
     for i in extracted_titles_desc:
-        print("Generating satirical article... for ", i['title'])
         prompt = f"Imagine you are a world-class satirist. You are handed the following article: {i['title']} - {i['description']}.\n\nNow, use your comedic genius to write a long, satirical article poking fun at this. Make it funny, absurd, and revealing about the insanity that exists in the world today. Tag your article appropriately, like 'Politics,' 'Economy,' 'Weird News,' etc. Be sure to add the title and a body of text to your satirical article."
         # Generate satirical article based on the original news article
         response = client.models.generate_content(
@@ -82,12 +80,10 @@ def get_new_articles(extracted_titles_desc):
             "tags": responseJSON[0]["tags"]
         })
     
-    print(return_list)  # For testing purposes, you can replace this with saving to a database or displaying it in the frontend.
     return return_list
 
 def extract_titles_desc(articles):
-    print("Extracting titles and descriptions from articles...")
-    # Extract titles and descriptions from the fetched articles
+     # Extract titles and descriptions from the fetched articles
     return_object_list = []
     for article in articles:
         return_object_list.append({

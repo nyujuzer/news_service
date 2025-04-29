@@ -9,3 +9,20 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+class User(models.Model):
+    username = models.CharField(max_length=255, unique=True)  # Username (unique)
+    password = models.CharField(max_length=255)  # Password (hashed)
+    email = models.EmailField(max_length=255, unique=True)  # Email (unique)
+    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp when the user was created
+    is_active = models.BooleanField(default=True)  # Indicates if the user is active
+
+    def __str__(self):
+        return self.username
+class API_keys(models.Model):
+    key = models.CharField(max_length=255, unique=True)  # API key (unique)
+    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp when the key was created
+    is_active = models.BooleanField(default=True)  # Indicates if the key is active
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)  # Foreign key to the UserModel
+
+    def __str__(self):
+        return self.key

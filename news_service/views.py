@@ -5,21 +5,24 @@ from .models import Article
 from django.core import serializers
 from .serializers import ArticleSerializer
 from rest_framework.views import APIView
+from .decorators import usesAPIKey
+
 class ArticleListAPIView(APIView):
     def get(self, request):
         articles = Article.objects.all()
         serializer = ArticleSerializer(articles, many=True)
         return JsonResponse(serializer.data, safe=False)
+@usesAPIKey
+def test_api_key(request):
+    return JsonResponse({"success":True})
+@usesAPIKey
 def gen_articles(request):
-    print("Fetching satirical articles...")
+    # Check if the API key is valid (this is a placeholder, implement your own logic)
     try:
-        print("Fetching satirical articles still")
         # Fetch the latest satirical articles
         articles = get_news()
-        print(articles)
         # Save the articles to the database
         for article in articles:
-            print("Saving satirical article...", article['title'])
             new_article = Article.objects.create(
                 title=article['title'],
                 body=article['body_text'],
